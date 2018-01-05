@@ -93,7 +93,7 @@ public class Main {
 
 	    ArrayList<String> output = new ArrayList<String>();
 	    while (rs.next()) {
-	      output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "  " + "商品１：" + rs.getString("goods1__c"));
+	      output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c")););
 	    }
 
 	    model.put("records", output);
