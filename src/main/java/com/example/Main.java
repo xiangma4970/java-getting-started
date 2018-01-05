@@ -93,10 +93,15 @@ public class Main {
 
 	    ArrayList<String> output = new ArrayList<String>();
 	    while (rs.next()) {
-		Double bd = rs.getDouble("goods1Value__c");
-		bd = bd * 1.08;
-		String bds = String.valueOf(bd);
-	      output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c")+ "　　　" + "商品１価格(税込)：" + bds);
+			Double bd = rs.getDouble("goods1Value__c");
+			if (bd == null) {
+				output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c"));
+			}
+			else {
+				bd = bd * 1.08;
+				String bds = String.valueOf(bd);
+				output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c")+ "　　　" + "商品１価格(税込)：" + bds);
+			}
 	    }
 
 	    model.put("records", output);
