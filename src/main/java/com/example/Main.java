@@ -33,7 +33,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Map;
-import java.math.BigDecimal;
 
 @Controller
 @SpringBootApplication
@@ -94,7 +93,7 @@ public class Main {
 
 	    ArrayList<String> output = new ArrayList<String>();
 	    while (rs.next()) {
-		BigDecimal bd = rs.getBigDecimal("goods1Value__c");
+		Double bd = rs.getDouble("goods1Value__c");
 		bd = bd * 1.08;
 		String bds = String.ValueOf(bd);
 	      output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c")+ "　　　" + "商品１価格(税込)：" + bds);
