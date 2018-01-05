@@ -89,7 +89,7 @@ public class Main {
 	String herokuConTest(Map<String, Object> model){
 	  try (Connection connection = dataSource.getConnection()) {
 	    Statement stmt = connection.createStatement();
-	    ResultSet rs = stmt.executeQuery("SELECT * FROM d4g5dq69uvp4f5.HerokuCon__c");
+	    ResultSet rs = stmt.executeQuery("SELECT * FROM salesforce.HerokuCon__c");
 
 	    ArrayList<String> output = new ArrayList<String>();
 	    while (rs.next()) {
