@@ -93,7 +93,10 @@ public class Main {
 
 	    ArrayList<String> output = new ArrayList<String>();
 	    while (rs.next()) {
-	      output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c"));
+		BigDecimal bd = rs.getBigDecimal("goods1Value__c");
+		bd = bd * 1.08;
+		String bds = String.ValueOf(bd);
+	      output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c")+ "　　　" + "商品１価格(税込)：" + bds);
 	    }
 
 	    model.put("records", output);
