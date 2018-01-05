@@ -95,7 +95,7 @@ public class Main {
 	    while (rs.next()) {
 		Double bd = rs.getDouble("goods1Value__c");
 		bd = bd * 1.08;
-		String bds = String.ValueOf(bd);
+		String bds = String.valueOf(bd);
 	      output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c")+ "　　　" + "商品１価格(税込)：" + bds);
 	    }
 
