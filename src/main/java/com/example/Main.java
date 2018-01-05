@@ -85,4 +85,23 @@ public class Main {
     }
   }
 
+	@RequestMapping("/herokuConTest")
+	String herokuConTest(Map<String, Object> model){
+	  try (Connection connection = dataSource.getConnection()) {
+	    Statement stmt = connection.createStatement();
+	    ResultSet rs = stmt.executeQuery("SELECT * FROM d4g5dq69uvp4f5.HerokuCon__c");
+
+	    ArrayList<String> output = new ArrayList<String>();
+	    while (rs.next()) {
+	      output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "  " + "商品１：" + rs.getString("goods1__c"));
+	    }
+
+	    model.put("records", output);
+	    return "herokuConTest";
+	  } catch (Exception e) {
+	    model.put("message", e.getMessage());
+	    return "error";
+	  }
+	}
+
 }
