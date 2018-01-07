@@ -127,13 +127,13 @@ public class Main {
 		
 		String sql = "SELECT * FROM salesforce.HerokuCon__c";
 		
-		if (!isNullOrEnpty(strShohin1) && !isNullOrEnpty(strShohin1val)) {
+		if (!isNullOrEmpty(strShohin1) && !isNullOrEmpty(strShohin1val)) {
 			sql += " where goods1__c like " + "'%" + strShohin1 + "%'" + " and cast(goods1Value__c as varchar) like " + "'%" + strShohin1val + "%'";
 		}
-		else if (!isNullOrEnpty(strShohin1) && isNullOrEnpty(strShohin1val)) {
+		else if (!isNullOrEmpty(strShohin1) && isNullOrEmpty(strShohin1val)) {
 			sql += " where goods1__c like " + "'%" + strShohin1 + "%'";
 		}
-		else if (isNullOrEnpty(strShohin1) && !isNullOrEnpty(strShohin1val)) {
+		else if (isNullOrEmpty(strShohin1) && !isNullOrEmpty(strShohin1val)) {
 			sql += " where cast(goods1Value__c as varchar) like " + "'%" + strShohin1val + "%'";
 		}
 		
@@ -146,12 +146,12 @@ public class Main {
 		    while (rs.next()) {
 				Double bd = rs.getDouble("goods1Value__c");
 				if (bd == 0) {
-					output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c"));
+					output.add("Herokuコネクトサンプル名：" + nullToEmpty(rs.getString("Name")) + "　　　" + "商品１：" + nullToEmpty(rs.getString("goods1__c"))+ "　　　" + "商品１価格：" + nullToEmpty(rs.getString("goods1Value__c")));
 				}
 				else {
 					bd = bd * 1.08;
 					String bds = String.valueOf(bd);
-					output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c")+ "　　　" + "商品１価格(税込)：" + bds);
+					output.add("Herokuコネクトサンプル名：" + nullToEmpty(rs.getString("Name")) + "　　　" + "商品１：" + nullToEmpty(rs.getString("goods1__c"))+ "　　　" + "商品１価格：" + nullToEmpty(rs.getString("goods1Value__c"))+ "　　　" + "商品１価格(税込)：" + bds);
 				}
 		    }
 
@@ -170,12 +170,20 @@ public class Main {
         return "search";
     }
 
-    private Boolean isNullOrEnpty(String val){
+    private Boolean isNullOrEmpty(String val){
 
         if(null == val || "".equals(val)){
             return true;
         }
         return false;
+    }
+
+	private String nullToEmpty(String val){
+		
+        if(null == val){
+        	val = "";
+        }
+        return val;
     }
 
 }
