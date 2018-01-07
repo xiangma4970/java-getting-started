@@ -122,24 +122,6 @@ public class Main {
 	@RequestMapping("/search")
 	public String search(@ModelAttribute SearchForm form, Model model){
 
-		//--------------------------------------
-		// 値１と値２を足した結果を算出する
-		//--------------------------------------
-		String ans = null;
-		try{
-		    // 入力された値１・値２を数値に変換
-		    int val1 = convertToNumber(form.getVal1());
-		    int val2 = convertToNumber(form.getVal2());
-
-		    // 計算（足し算）
-		    int result = val1 + val2;
-
-		    // 結果を文字列に変換
-		    ans = String.valueOf(result);
-		} catch(Exception e){
-		    ans = "入力された値が正しくありません。整数を入力してください";
-		}
-
 		String strShohin1 = form.getVal1();
 		String strShohin1val = form.getVal2();
 		
@@ -168,7 +150,7 @@ public class Main {
 		    }
 
 		  } catch (Exception e) {
-		    return "error";
+		    output.add("DBerror");
 		  }
 
         //--------------------------------------
