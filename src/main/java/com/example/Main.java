@@ -130,6 +130,12 @@ public class Main {
 		if (!isNullOrEnpty(strShohin1) && !isNullOrEnpty(strShohin1val)) {
 			sql += " where goods1__c like " + "'%" + strShohin1 + "%'" + " and goods1Value__c like " + "'%" + strShohin1val + "%'";
 		}
+		else if (!isNullOrEnpty(strShohin1) && isNullOrEnpty(strShohin1val)) {
+			sql += " where goods1__c like " + "'%" + strShohin1 + "%'";
+		}
+		else if (isNullOrEnpty(strShohin1) && !isNullOrEnpty(strShohin1val)) {
+			sql += " where goods1Value__c like " + "'%" + strShohin1val + "%'";
+		}
 		
 		ArrayList<String> output = new ArrayList<String>();
 
