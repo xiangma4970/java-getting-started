@@ -150,7 +150,7 @@ public class Main {
 		    }
 
 		  } catch (Exception e) {
-		    output.add("DBerror");
+		    output.add("DBerror" + sql);
 		  }
 
         //--------------------------------------
