@@ -120,7 +120,7 @@ public class Main {
 	}
 
 	@RequestMapping("/search")
-	public String search(@ModelAttribute SearchFrom form, Model model){
+	public String search(@ModelAttribute SearchForm form, Model model){
 
 		//--------------------------------------
 		// 値１と値２を足した結果を算出する
@@ -140,6 +140,7 @@ public class Main {
 		    ans = "入力された値が正しくありません。整数を入力してください";
 		}
 
+		form.getVal1();
 		ArrayList<String> output = new ArrayList<String>();
 
 		try (Connection connection = dataSource.getConnection()) {
@@ -159,7 +160,6 @@ public class Main {
 		    }
 
 		  } catch (Exception e) {
-		    model.put("message", e.getMessage());
 		    return "error";
 		  }
 
