@@ -127,7 +127,7 @@ public class Main {
 		
 		String sql = "SELECT * FROM salesforce.HerokuCon__c";
 		
-		if (!"".equals(strShohin1) && !"".equals(strShohin1val)) {
+		if (!isNullOrEnpty(strShohin1) && !isNullOrEnpty(strShohin1val)) {
 			sql += " where goods1__c like " + "%" + strShohin1 + "%" + " goods1Value__c like " + "%" + strShohin1val + "%";
 		}
 		
@@ -150,7 +150,7 @@ public class Main {
 		    }
 
 		  } catch (Exception e) {
-		    output.add("DBerror" + sql);
+		    output.add("DBerror");
 		  }
 
         //--------------------------------------
@@ -164,21 +164,12 @@ public class Main {
         return "search";
     }
 
-    /**
-    * 文字列を数値に変換する
-    *
-    * @param val 文字列
-    * @return 数値
-    */
-    private int convertToNumber(String val){
+    private Boolean isNullOrEnpty(String val){
 
-        // 値が空の場合はゼロを返却
-        if(StringUtils.isEmpty(val)){
-            return 0;
+        if(null == val || "".equals(val)){
+            return true;
         }
-
-        // 数値に変換した値を返却
-        return Integer.parseInt(val);
+        return false;
     }
 
 }
