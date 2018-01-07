@@ -140,12 +140,20 @@ public class Main {
 		    ans = "入力された値が正しくありません。整数を入力してください";
 		}
 
-		form.getVal1();
+		String strShohin1 = form.getVal1();
+		String strShohin1val = form.getVal2();
+		
+		String sql = "SELECT * FROM salesforce.HerokuCon__c";
+		
+		if (!"".equals(strShohin1) && !"".equals(strShohin1val)) {
+			sql += " where goods1__c like " + "%" + strShohin1 + "%" + " goods1Value__c like " + "%" + strShohin1val + "%";
+		}
+		
 		ArrayList<String> output = new ArrayList<String>();
 
 		try (Connection connection = dataSource.getConnection()) {
 		    Statement stmt = connection.createStatement();
-		    ResultSet rs = stmt.executeQuery("SELECT * FROM salesforce.HerokuCon__c");
+		    ResultSet rs = stmt.executeQuery(sql);
 
 		    while (rs.next()) {
 				Double bd = rs.getDouble("goods1Value__c");
