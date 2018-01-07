@@ -39,7 +39,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.example.CalcForm;
+import com.example.SearchForm;
 
 @Controller
 @SpringBootApplication
@@ -119,36 +119,59 @@ public class Main {
 	  }
 	}
 
-	@RequestMapping("/calc")
-	public String calc(@ModelAttribute CalcForm form, Model model){
+	@RequestMapping("/search")
+	public String search(@ModelAttribute SearchFrom form, Model model){
 
-        //--------------------------------------
-        // 値１と値２を足した結果を算出する
-        //--------------------------------------
-        String ans = null;
-        try{
-            // 入力された値１・値２を数値に変換
-            int val1 = convertToNumber(form.getVal1());
-            int val2 = convertToNumber(form.getVal2());
+		//--------------------------------------
+		// 値１と値２を足した結果を算出する
+		//--------------------------------------
+		String ans = null;
+		try{
+		    // 入力された値１・値２を数値に変換
+		    int val1 = convertToNumber(form.getVal1());
+		    int val2 = convertToNumber(form.getVal2());
 
-            // 計算（足し算）
-            int result = val1 + val2;
+		    // 計算（足し算）
+		    int result = val1 + val2;
 
-            // 結果を文字列に変換
-            ans = String.valueOf(result);
-        } catch(Exception e){
-            ans = "入力された値が正しくありません。整数を入力してください";
-        }
+		    // 結果を文字列に変換
+		    ans = String.valueOf(result);
+		} catch(Exception e){
+		    ans = "入力された値が正しくありません。整数を入力してください";
+		}
+
+		ArrayList<String> output = new ArrayList<String>();
+
+		try (Connection connection = dataSource.getConnection()) {
+		    Statement stmt = connection.createStatement();
+		    ResultSet rs = stmt.executeQuery("SELECT * FROM salesforce.HerokuCon__c");
+
+		    while (rs.next()) {
+				Double bd = rs.getDouble("goods1Value__c");
+				if (bd == 0) {
+					output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c"));
+				}
+				else {
+					bd = bd * 1.08;
+					String bds = String.valueOf(bd);
+					output.add("Herokuコネクトサンプル名：" + rs.getString("Name") + "　　　" + "商品１：" + rs.getString("goods1__c")+ "　　　" + "商品１価格：" + rs.getString("goods1Value__c")+ "　　　" + "商品１価格(税込)：" + bds);
+				}
+		    }
+
+		  } catch (Exception e) {
+		    model.put("message", e.getMessage());
+		    return "error";
+		  }
 
         //--------------------------------------
         // 画面表示項目設定
         //--------------------------------------
         // 画面に渡す値を設定
         model.addAttribute("form", form);
-        model.addAttribute("ans", ans);
+        model.addAttribute("records", output);
 
-        // calc画面を表示
-        return "calc";
+        // search画面を表示
+        return "search";
     }
 
     /**
