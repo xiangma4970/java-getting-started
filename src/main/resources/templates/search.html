@@ -16,6 +16,11 @@
 		<br/>
 		<br/>
 		<input type="submit" value="検索" />
+		<br/>
+		<br/>
+		<ul th:each="record : ${records}">
+			<li th:text="${record}"/>
+		</ul>
 	</form>
 </body>
 </html>
