@@ -112,4 +112,53 @@ public class Main {
 	  }
 	}
 
+	@RequestMapping("/calc")
+	public String calc(@ModelAttribute CalcForm form, Model model){
+
+        //--------------------------------------
+        // 値１と値２を足した結果を算出する
+        //--------------------------------------
+        String ans = null;
+        try{
+            // 入力された値１・値２を数値に変換
+            int val1 = convertToNumber(form.getVal1());
+            int val2 = convertToNumber(form.getVal2());
+
+            // 計算（足し算）
+            int result = val1 + val2;
+
+            // 結果を文字列に変換
+            ans = String.valueOf(result);
+        } catch(Exception e){
+            ans = "入力された値が正しくありません。整数を入力してください";
+        }
+
+        //--------------------------------------
+        // 画面表示項目設定
+        //--------------------------------------
+        // 画面に渡す値を設定
+        model.addAttribute("form", form);
+        model.addAttribute("ans", ans);
+
+        // calc画面を表示
+        return "calc";
+    }
+
+    /**
+    * 文字列を数値に変換する
+    *
+    * @param val 文字列
+    * @return 数値
+    */
+    private int convertToNumber(String val){
+
+        // 値が空の場合はゼロを返却
+        if(StringUtils.isEmpty(val)){
+            return 0;
+        }
+
+        // 数値に変換した値を返却
+        return Integer.parseInt(val);
+    }
+
 }
