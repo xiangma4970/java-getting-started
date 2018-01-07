@@ -134,7 +134,7 @@ public class Main {
 			sql += " where goods1__c like " + "'%" + strShohin1 + "%'";
 		}
 		else if (isNullOrEnpty(strShohin1) && !isNullOrEnpty(strShohin1val)) {
-			sql += " where cast(goods1Value__c text) like " + "'%" + strShohin1val + "%'";
+			sql += " where cast(goods1Value__c as varchar) like " + "'%" + strShohin1val + "%'";
 		}
 		
 		ArrayList<String> output = new ArrayList<String>();
