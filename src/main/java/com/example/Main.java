@@ -128,7 +128,7 @@ public class Main {
 		String sql = "SELECT * FROM salesforce.HerokuCon__c";
 		
 		if (!isNullOrEnpty(strShohin1) && !isNullOrEnpty(strShohin1val)) {
-			sql += " where goods1__c like " + "'%" + strShohin1 + "%'" + " and goods1Value__c like " + "'%" + strShohin1val + "%'";
+			sql += " where goods1__c like " + "'%" + strShohin1 + "%'" + " and cast(goods1Value__c as varchar) like " + "'%" + strShohin1val + "%'";
 		}
 		else if (!isNullOrEnpty(strShohin1) && isNullOrEnpty(strShohin1val)) {
 			sql += " where goods1__c like " + "'%" + strShohin1 + "%'";
