@@ -39,7 +39,7 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.sbc.web.form.CalcForm;
+import com.example.CalcForm;
 
 @Controller
 @SpringBootApplication
