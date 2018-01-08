@@ -47,13 +47,13 @@
 				<input type="submit" class="square_btn" value="検索" />
 				<br/>
 				<br/>
-				<div>
-					<ul th:each="record : ${records}">
-						<li th:text="${record}"/>
-					</ul>
-				</div>
-			</form>
-            </div>
+			</div>
+            <div class="col-lg-12 mx-auto">
+				<ul th:each="record : ${records}">
+					<li th:text="${record}"/>
+				</ul>
+			</div>
+			</form>            
           </div>
         </div>
       </div>
