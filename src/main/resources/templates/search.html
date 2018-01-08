@@ -19,8 +19,9 @@
 		<br/>
 		<br/>
 	</form>
-		<ul th:each="record : ${records}">
-			<li th:text="${record}"/>
-		</ul>
+	<h2>Herokuコネクトサンプルオブジェクト 検索結果</h2>
+	<ul th:each="record : ${records}">
+		<li th:text="${record}"/>
+	</ul>
 </body>
 </html>
