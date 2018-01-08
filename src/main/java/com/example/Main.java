@@ -151,7 +151,7 @@ public class Main {
 				else {
 					bd = bd * 1.08;
 					bd = Math.floor(bd);
-					String bds = String.valueOf((int)bd);
+					String bds = format(bd);
 					output.add("Herokuコネクトサンプル名：" + nullToEmpty(rs.getString("Name")) + "　　　" + "商品１：" + nullToEmpty(rs.getString("goods1__c"))+ "　　　" + "商品１価格：" + nullToEmpty(rs.getString("goods1Value__c"))+ "　　　" + "商品１価格(税込)：" + bds);
 				}
 		    }
@@ -186,5 +186,13 @@ public class Main {
         }
         return val;
     }
+
+	private String format(double d){
+		
+		if(d == (long) d)
+		return String.format("%d",(int)d);
+		else
+		return String.format("%s",d);
+	}
 
 }
