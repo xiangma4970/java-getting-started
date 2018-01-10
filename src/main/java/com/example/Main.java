@@ -137,7 +137,6 @@
 				sql += " where cast(goods1Value__c as varchar) like " + "'%" + strShohin1val + "%'";
 			}
 			
-			List<Map<String, Object>>
 			ArrayList<Map<String,String>> output = new ArrayList<Map<String,String>>();
 			Map<String,String> outMap = new HashMap<String,String>();
 
