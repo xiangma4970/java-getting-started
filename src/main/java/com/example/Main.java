@@ -33,7 +33,7 @@
 	import java.sql.Statement;
 	import java.util.ArrayList;
 	import java.util.Map;
-	import java.util.HashMap
+	import java.util.HashMap;
 	import org.springframework.stereotype.Controller;
 	import org.springframework.ui.Model;
 	import org.springframework.util.StringUtils;
