@@ -138,6 +138,7 @@
 				sql += " where cast(goods1Value__c as varchar) like " + "'%" + strShohin1val + "%'";
 			}
 			
+			sql += " order by Name";
 			ArrayList<Map<String,String>> output = new ArrayList<Map<String,String>>();
 			
 			try (Connection connection = dataSource.getConnection()) {
@@ -163,7 +164,7 @@
 						outMap.put("Name",nullToEmpty(rs.getString("Name")));
 						outMap.put("goods1",nullToEmpty(rs.getString("goods1__c")));
 						outMap.put("goods1Value",nullToEmpty(rs.getString("goods1Value__c")));
-						outMap.put("goods1Value",nullToEmpty(rs.getString("goods1Value__c")));
+						outMap.put("goods1Value_tax",bds);
 						
 						output.add(outMap);
 					}
