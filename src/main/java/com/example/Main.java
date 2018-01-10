@@ -139,14 +139,15 @@
 			}
 			
 			ArrayList<Map<String,String>> output = new ArrayList<Map<String,String>>();
-			Map<String,String> outMap = new HashMap<String,String>();
-
+			
 			try (Connection connection = dataSource.getConnection()) {
 			    Statement stmt = connection.createStatement();
 			    ResultSet rs = stmt.executeQuery(sql);
 
-			    while (rs.next()) {
+				while (rs.next()) {
+					Map<String,String> outMap = new HashMap<String,String>();
 					Double bd = rs.getDouble("goods1Value__c");
+					
 					if (bd == 0) {
 						outMap.put("Name",nullToEmpty(rs.getString("Name")));
 						outMap.put("goods1",nullToEmpty(rs.getString("goods1__c")));
