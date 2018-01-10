@@ -147,9 +147,9 @@
 			    while (rs.next()) {
 					Double bd = rs.getDouble("goods1Value__c");
 					if (bd == 0) {
-						outMap.put("Name",nullToEmpty(rs.getString("Name"));
-						outMap.put("goods1",nullToEmpty(rs.getString("goods1__c"));
-						outMap.put("goods1Value",nullToEmpty(rs.getString("goods1Value__c"));
+						outMap.put("Name",nullToEmpty(rs.getString("Name")));
+						outMap.put("goods1",nullToEmpty(rs.getString("goods1__c")));
+						outMap.put("goods1Value",nullToEmpty(rs.getString("goods1Value__c")));
 						
 						output.add(outMap);
 					}
@@ -158,10 +158,10 @@
 						bd = Math.floor(bd);
 						String bds = format(bd);
 						
-						outMap.put("Name",nullToEmpty(rs.getString("Name"));
-						outMap.put("goods1",nullToEmpty(rs.getString("goods1__c"));
-						outMap.put("goods1Value",nullToEmpty(rs.getString("goods1Value__c"));
-						outMap.put("goods1Value",nullToEmpty(rs.getString("goods1Value__c"));
+						outMap.put("Name",nullToEmpty(rs.getString("Name")));
+						outMap.put("goods1",nullToEmpty(rs.getString("goods1__c")));
+						outMap.put("goods1Value",nullToEmpty(rs.getString("goods1Value__c")));
+						outMap.put("goods1Value",nullToEmpty(rs.getString("goods1Value__c")));
 						
 						output.add(outMap);
 					}
