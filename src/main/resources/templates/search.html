@@ -48,17 +48,17 @@
 				<br/>
 				<br/>
 			</div>
-			<div class="col-lg-12 mx-auto table-responsive">
-				<table class="table table-bordered">
+			<div class="col-lg-8 mx-auto table-responsive">
+				<table class="table table-bordered table-hover">
 					<thead>
-						<tr>
+						<tr class="info">
 							<th>Herokuコネクトサンプル名</th>
 							<th>商品１</th>
 							<th>商品１価格</th>
 						</tr>
 					</thead>
 					<tbody>
-						<tr th:each="record : ${records}">
+						<tr th:each="record : ${records}" class="active">
 							<td th:text="${record.Name}"></td>
 							<td th:text="${record.goods1}"></td>
 							<td th:text="${record.goods1Value}"></td>
