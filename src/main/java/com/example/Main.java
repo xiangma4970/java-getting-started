@@ -137,8 +137,9 @@
 				sql += " where cast(goods1Value__c as varchar) like " + "'%" + strShohin1val + "%'";
 			}
 			
+			List<Map<String, Object>>
 			ArrayList<Map<String,String>> output = new ArrayList<Map<String,String>>();
-			Map<String,String> outMap = new Map<String,String>();
+			Map<String,String> outMap = new HashMap<String,String>();
 
 			try (Connection connection = dataSource.getConnection()) {
 			    Statement stmt = connection.createStatement();
@@ -147,7 +148,6 @@
 			    while (rs.next()) {
 					Double bd = rs.getDouble("goods1Value__c");
 					if (bd == 0) {
-						outMap.put("Name","Name");
 						outMap.put("Name",nullToEmpty(rs.getString("Name")));
 						outMap.put("goods1",nullToEmpty(rs.getString("goods1__c")));
 						outMap.put("goods1Value",nullToEmpty(rs.getString("goods1Value__c")));
